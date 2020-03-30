@@ -1,0 +1,39 @@
+.container {
+  height: 95%;
+  margin: 2% 25%;
+  padding: 0px 20px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 20px;
+}
+
+.item {
+  margin-bottom: 1vh;
+}
+
+.manager {
+  flex: 1 1 80%;
+  overflow-y: scroll;
+  padding-top: 2vh;
+}
+
+.notifications {
+  flex: 1 1 18%;
+  overflow-y: scroll;
+}
+
+.footer {
+  flex: 1 1 2%;
+}
+
+.app-name {
+  letter-spacing: 7px;
+  margin-right: 40px;
+  font-weight: bold;
+}
+
+.separator {
+  letter-spacing: -3px;
+  margin: 0px 10%;
+}

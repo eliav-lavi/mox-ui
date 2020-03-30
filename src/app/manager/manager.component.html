@@ -1,0 +1,21 @@
+<button mat-raised-button color="primary" (click)="addEndpoint()" id="add-new-endpoint-button">Add New Endpoint</button>
+<button mat-raised-button color="primary" (click)="saveEndpointsSchema()">Save Endpoints Schema</button>
+<button mat-raised-button color="primary" (click)="fileInput.click()"><input #fileInput type="file" (change)="loadEndpointsSchema($event)" style="display:none;">Load Endpoints Schema</button>
+<button mat-raised-button color="warn" (click)="removeAllEndpoints()">Delete All Endpoints</button>
+<div>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let endpoint of endpoints.reverse()">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span class="endpoint-verb code">{{endpoint.verb}}</span><span class="endpoint-path code">{{endpoint.path}}</span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-endpoint 
+      [endpoint]="endpoint"
+      (removeRequest)="removeEndpoint($event)"
+      (editRequest)="updateEndpoint($event)"
+      ></app-endpoint>
+      
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
