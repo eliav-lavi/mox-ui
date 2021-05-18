@@ -1,11 +1,15 @@
 <div class="main">
   <div class="return-value code" [innerHTML]="endpoint.returnValue"></div>
-  <span class="buttons">
+  <div *ngIf="responseTimeData.enabled" class="response-time-data">
+    <mat-icon class="response-time-icon">{{responseTimeData.icon}}</mat-icon>
+    <span class="response-time-str">{{responseTimeData.responseTimeStr}}</span>
+  </div>
+  <div class="buttons">
     <button mat-raised-button color="primary" class="button" (click)="edit()">
       Edit
     </button>
-   <button mat-raised-button color="warn" class="button" (click)="remove()">
+    <button mat-raised-button color="warn" class="button" (click)="remove()">
       Delete
     </button>
-  </span>
+  </div>
 </div>

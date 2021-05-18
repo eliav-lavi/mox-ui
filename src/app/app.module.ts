@@ -10,20 +10,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { MatFormFieldModule } from '@angular/material/form-field'; 
-import { MatInputModule } from '@angular/material/input'; 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button'; 
-import { MatDialogModule } from '@angular/material/dialog'; 
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import { EndpointComponent } from './endpoint/endpoint.component';
 import { ManagerComponent } from './manager/manager.component';
-import { EndpointDialogComponent } from './endpoint-dialog/endpoint-dialog.component'; 
+import { EndpointDialogComponent } from './endpoint-dialog/endpoint-dialog.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { NotificationsComponent } from './notifications/notifications.component';
-import { PrettyPrintPipe } from './pretty-print.pipe'; 
+import { PrettyPrintPipe } from './pretty-print.pipe';
 
 @NgModule({
   declarations: [
@@ -39,18 +40,19 @@ import { PrettyPrintPipe } from './pretty-print.pipe';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    
+
     HttpClientModule,
 
     FormsModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
     MatIconModule,
-    MatFormFieldModule,
     MatExpansionModule,
-    MatDialogModule
+    MatDialogModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

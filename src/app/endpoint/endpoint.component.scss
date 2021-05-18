@@ -13,6 +13,18 @@
   padding-top: 1vh;
 }
 
+.response-time-data {
+  margin-bottom: 2vh;
+
+  .response-time-icon {
+    vertical-align: middle;
+  }
+
+  .response-time-str {
+    margin-left: 5px;
+  }
+}
+
 .button {
   margin-right: 10px;
 }
