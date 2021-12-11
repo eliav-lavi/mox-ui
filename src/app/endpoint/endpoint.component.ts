@@ -16,6 +16,8 @@ export class EndpointComponent implements OnInit {
 
   responseTimeData: { enabled: boolean, icon?: string, responseTimeStr?: string }
 
+  isHeadersExpanded: boolean = false;
+
   ngOnInit(): void {
     if (this.endpoint.minResponseMillis && this.endpoint.maxResponseMillis) {
       this.responseTimeData = { enabled: true, icon: "linear_scale", responseTimeStr: `${this.endpoint.minResponseMillis}ms - ${this.endpoint.maxResponseMillis}ms` }
@@ -33,4 +35,16 @@ export class EndpointComponent implements OnInit {
   edit() {
     this.editRequest.emit(this.endpoint)
   }
+
+  toggleHeadersExpansion(): void {
+    this.isHeadersExpanded = !this.isHeadersExpanded
+  }
+
+  expansionIcon(): string {
+    return this.isHeadersExpanded ? 'expand_more' : 'chevron_right'
+  }
+
+  isHeadersPresent(): boolean {
+    return Object.keys(this.endpoint.headers).length > 0
+  };
 }

@@ -25,3 +25,31 @@ button {
   padding: 3px 15px;
   margin-right: 10px;
 }
+
+.endpoint-status-code {
+  padding: 3px 15px;
+  text-align: center;
+  background-color: black;
+  color:antiquewhite;
+  border-radius: 10px;
+  margin-right: 10px;
+  margin-left: auto;
+}
+
+.endpoint-status-code-ok {
+  background-color: green;
+}
+
+.endpoint-status-code-client-error {
+  background-color: gray;
+}
+
+.endpoint-status-code-server-error {
+  background-color: red;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}

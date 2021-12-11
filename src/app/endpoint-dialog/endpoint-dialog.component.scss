@@ -21,10 +21,38 @@
   width: 1000px;
 }
 
+.headers-input {
+  width: 1000px;
+}
+
 button {
   margin-right: 10px;
 }
 
 .response-time-toggle {
   margin-right: 20px;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  .mat-form-field {
+    width: 100%
+  }
+}
+
+.item {
+  width: 100%
+}
+
+.verb-selector-2 {
+  flex: 1
+}
+.path-input-2 {
+  flex: 11
+}
+.status-code-input-2 {
+  flex: 1
 }

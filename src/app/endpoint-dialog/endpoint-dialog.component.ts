@@ -1,8 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { PersistedEndpoint } from '../models/endpoint';
 import { Verb } from '../models/verb'
+import * as _ from 'lodash'
 
 export enum EndpointDialogType {
   Add,
@@ -18,7 +19,7 @@ const ResponseTimeValidator: ValidatorFn = (fg: FormGroup) => {
   const start = fg.get('minResponseMillis')?.value;
   const end = fg.get('maxResponseMillis')?.value;
 
-  switch(fg.controls.responseTimeToggle.value) {
+  switch (fg.controls.responseTimeToggle.value) {
     case ResponseTimeType.Off:
       return null
     case ResponseTimeType.Fixed:
@@ -26,6 +27,16 @@ const ResponseTimeValidator: ValidatorFn = (fg: FormGroup) => {
     case ResponseTimeType.Range:
       return start > 0 && end > start ? null : { range: true }
   }
+};
+
+function jsonValidator(control: AbstractControl): ValidationErrors | null {
+  try {
+    JSON.parse(control.value);
+  } catch (e) {
+    return { jsonInvalid: true };
+  }
+
+  return null;
 };
 
 export enum ResponseTimeType {
@@ -85,7 +96,15 @@ export class EndpointDialogComponent implements OnInit {
       case (ResponseTimeType.Fixed):
         this.clearResponseTime('max')
     }
+    this.setHeadersAsObject()
     this.dialogRef.close(this.endpointForm.value);
+  }
+
+  setHeadersAsObject() {
+    this.endpointForm.controls.headers.setValue(this.headersAsObject())
+  }
+  headersAsObject() {
+    return JSON.parse(this.endpointForm.controls.headers.value)
   }
 
   clearResponseTime(type: 'min' | 'max') {
@@ -122,7 +141,9 @@ export class EndpointDialogComponent implements OnInit {
   endpointForm = new FormGroup({
     verb: new FormControl(this.data.persistedEndpoint?.verb || '', [Validators.required]),
     path: new FormControl(this.data.persistedEndpoint?.path || '', [Validators.required, Validators.pattern(/\/.+/)]),
+    statusCode: new FormControl(this.data.persistedEndpoint?.statusCode || 200, [Validators.required, Validators.pattern(/\d{3,3}/)]),
     returnValue: new FormControl(this.data.persistedEndpoint?.returnValue || '', [Validators.required]),
+    headers: new FormControl(JSON.stringify(this.data.persistedEndpoint?.headers, undefined, 4) || '{}', [jsonValidator]),
     responseTimeToggle: new FormControl(ResponseTimeType.Off),
     minResponseMillis: new FormControl({ value: this.data.persistedEndpoint?.minResponseMillis || null, disabled: true }),
     maxResponseMillis: new FormControl({ value: this.data.persistedEndpoint?.maxResponseMillis || null, disabled: true })

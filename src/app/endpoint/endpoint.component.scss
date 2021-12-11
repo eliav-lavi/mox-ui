@@ -28,3 +28,27 @@
 .button {
   margin-right: 10px;
 }
+
+.headers {
+  margin-bottom: 4vh;
+  .title {
+    cursor: pointer;
+  }
+  .material-icons {
+    vertical-align: -3px;
+    font-size: 18px;
+  }
+}
+
+.headers-table {  
+  padding-top: 10px;
+  padding-left: 15px;
+  
+  th {
+    text-align: left;
+  }
+
+  td {
+    padding-right: 30px;
+  }
+}

@@ -1,20 +1,30 @@
 <h1 mat-dialog-title>{{title}}</h1>
 <div mat-dialog-content>
   <form class="endpoint" [formGroup]="endpointForm">
-    <div>
-      <mat-form-field class="verb-selector code">
-        <mat-label>Verb</mat-label>
-        <mat-select formControlName="verb" required>
-          <mat-option *ngFor="let verb of verbs" value="{{verb}}">{{verb}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+    <div class="container">
+      <div class="item verb-selector-2">
+        <mat-form-field class="code">
+          <mat-label>Verb</mat-label>
+          <mat-select formControlName="verb" required>
+            <mat-option *ngFor="let verb of verbs" value="{{verb}}">{{verb}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-
-      <mat-form-field class="path-input code">
-        <mat-label>Path</mat-label>
-        <input matInput placeholder="foo" formControlName="path" required>
-      </mat-form-field>
+      <div class="item path-input-2">
+        <mat-form-field class="code">
+          <mat-label>Path</mat-label>
+          <input matInput placeholder="foo" formControlName="path" required>
+        </mat-form-field>
+      </div>
+      <div class="item status-code-input-2">
+        <mat-form-field class="code">
+          <mat-label>Status Code</mat-label>
+          <input matInput type="number" placeholder="200" formControlName="statusCode" required>
+        </mat-form-field>
+      </div>
     </div>
+
     <div>
       <mat-form-field class="return-value-input code" appearance="fill">
         <mat-label>Return Value</mat-label>
@@ -22,6 +32,15 @@
           formControlName="returnValue" required></textarea>
       </mat-form-field>
     </div>
+
+    <div>
+      <mat-form-field class="headers-input code" appearance="fill">
+        <mat-label>Headers</mat-label>
+        <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="5" cdkAutosizeMaxRows="7"
+          formControlName="headers"></textarea>
+      </mat-form-field>
+    </div>
+
     <div>
       <mat-button-toggle-group formControlName="responseTimeToggle" #group="matButtonToggleGroup"
         class="response-time-toggle" value="off" (change)="handleResponseTimeToggle()">
